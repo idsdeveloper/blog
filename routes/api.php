@@ -29,3 +29,14 @@ Route::get('user/soal/subject/{id}',['uses' => 'PenggunaController@getSoalById']
 
 // Soal
 Route::get('soal',['uses' => 'PenggunaController@getSoal']);
+    return $request->user();
+});
+
+Route::get('siswa', ['uses' => 'gilunkcontrol@list']);
+Route::get('siswa/{nis}', ['uses' => 'gilunkcontrol@getbyid']);
+Route::post('siswa', ['uses' => 'gilunkcontrol@create']);
+Route::put('siswa/{nis}', ['uses' => 'gilunkcontrol@update']);
+Route::delete('siswa/{nis}', ['uses' => 'gilunkcontrol@delete']);
+
+// Hobi
+Route::get('hobi/{id}', ['uses' => 'gilunkcontrol@getbyid']);

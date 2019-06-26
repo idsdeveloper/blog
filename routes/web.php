@@ -12,3 +12,9 @@
 */
 
 Route::get('/homeawal/{name}',['uses' => 'homeController@welcome']);
+/*Route::get('/', function () {
+    return view('welcome');
+});
+*/
+
+Route::get('/home/{name}', ['uses' => 'gilunkcontrol@welcome']);
