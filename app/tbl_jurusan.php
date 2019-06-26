@@ -18,4 +18,8 @@ class tbl_jurusan extends Model
     {
         return $this->hasMany('App\tbl_siswa','id_hobi');
     }
+    public function guru()
+    {
+        return $this->hasMany('App\tbl_guru','id_guru');
+    }
 }

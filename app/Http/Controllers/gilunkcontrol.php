@@ -6,9 +6,11 @@ use Illuminate\Http\Request;
 use App\tbl_siswa as t_siswa;
 use App\tbl_hobi as t_hobi;
 use App\tbl_jurusan;
+use App\tbl_guru as t_guru;
 
 class gilunkcontrol extends Controller
 {
+    // untuk siswa
     function list(){
         $data = t_siswa::select('nis', 'nama_siswa', 'jk_siswa','id_jurusan','agama_siswa','id_hobi')->with(['hobi', 'jurusan'])->orderBy('nama_siswa','desc')->get();
         return response()->json([
@@ -78,6 +80,65 @@ class gilunkcontrol extends Controller
 
     function delete(Request $request, $nis){
         $delete = t_siswa::find($nis);
+
+        $delete->delete();
+
+        return response()->json([
+            "status" => 200,
+            "data" => $delete
+        ]);
+    }
+
+    //untuk guru
+    function listguru(){
+        $data = t_guru::select('id_guru', 'nama_guru','id_jurusan','no_telp','alamat_guru')->with(['jurusan'])->get();
+        return response()->json([
+            "status" => 200,
+            "data" => $data
+        ]);
+    }
+
+    function getbyidguru(Request $request, $id){
+        $data = t_guru::with(['jurusan'])->find($id);
+
+        return response()->json([
+            "status" => 200,
+            "data" => $data
+        ]);
+    }
+    function createguru(Request $request){
+
+        $post = t_guru::create([
+            'id_guru' => $request['id_guru'],
+            'nama_guru' => $request['nama_guru'],
+            'id_jurusan' => $request['id_jurusan'],
+            'no_telp' => $request['no_telp'],
+            'alamat_guru'=> $request['alamat_siswa']
+        ]);
+
+        return response()->json([
+            "status" => 200,
+            "data" => $post
+        ]);
+    }
+    function updateguru(Request $request, $id_guru){
+
+        $put = t_guru::find($id_guru);
+
+        $put->nama_guru = $request['nama_guru'];
+        $put->id_jurusan = $request['id_jurusan'];
+        $put->no_telp = $request['no_telp'];
+        $put->alamat_guru = $request['alamat_guru'];
+
+        $put->save();
+        return response()->json([
+            "status" => 200,
+            "data" => $put
+        ]);
+    }
+
+    function deleteguru(Request $request, $id_guru){
+        $delete = t_guru::find($id_guru);
 
         $delete->delete();
 
