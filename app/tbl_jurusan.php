@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class tbl_jurusan extends Model
 {
     protected $fillable = [
-        'id_jurusan', 'nama_jurusan'
+        'id_jurusan', 'nama_jurusan', 'ketua_pk'
     ];
 
     protected $primaryKey = 'id_jurusan';
