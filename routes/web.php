@@ -11,6 +11,7 @@
 |
 */
 
+Route::get('/homeawal/{name}',['uses' => 'homeController@welcome']);
 /*Route::get('/', function () {
     return view('welcome');
 });
